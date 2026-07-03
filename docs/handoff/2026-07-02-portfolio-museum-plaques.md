@@ -66,3 +66,12 @@ Verify:
 - Keep shared components in `src/components/`.
 - Keep types in `src/lib/types.ts` and data in `src/lib/data.ts`.
 - Do not introduce payment logic here; this is a portfolio-only feature branch.
+
+## Update: Virtual Showroom + Detail Pages
+
+- Replaced hover-only gallery with a spotlight stage + gallery-map floor plan.
+- Category filters now act as "rooms" that reset the spotlight to the first matching piece.
+- Each thumbnail links to a dedicated `/portfolio/[id]` exhibit page.
+- Reusable components: `PortfolioPlaque`, `PortfolioSpotlight`, `PortfolioFloorPlan`.
+- Detail pages include prev/next navigation and SEO metadata.
+- Implementation plan saved to `docs/plans/2026-07-02-virtual-showroom-detail-pages.md`.
