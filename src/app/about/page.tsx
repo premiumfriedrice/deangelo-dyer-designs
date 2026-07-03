@@ -43,21 +43,21 @@ export default function AboutPage() {
               About the Maker
             </p>
             <h1 className="font-serif text-5xl font-semibold md:text-6xl">
-              Deangelo Dyer
+              [Business Name]
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-foreground/70">
-              Deangelo is a woodworker based in Portland, Oregon. What began as
+              [Name] is a woodworker based in [City], [State]. What began as
               a way to build furniture for his own home grew into a practice
               centered on patience, material respect, and the belief that the
               things we use every day should be beautiful.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-foreground/70">
-              His virtual showroom is a way to share finished work, current
+              This virtual showroom is a way to share finished work, current
               pieces, and the quiet process behind them. Every item here is
               either ready to ship or made to order.
             </p>
             <p className="mt-4 text-lg leading-relaxed text-foreground/70">
-              When he is not in the shop, you will find him sourcing lumber,
+              When not in the shop, you will find them sourcing lumber,
               sketching new forms, or documenting the process on Instagram.
             </p>
           </div>

@@ -22,7 +22,7 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
             <h3 className="font-serif text-2xl font-semibold">
-              Deangelo Dyer Designs
+              [Business Name]
             </h3>
             <p className="text-cream/70">
               A virtual showroom for handcrafted items, made with patience and
@@ -113,7 +113,7 @@ export function Footer() {
         </div>
 
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-cream/10 pt-8 text-sm text-cream/50 md:flex-row">
-          <p>© {new Date().getFullYear()} Deangelo Dyer Designs. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} [Business Name]. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-cream">
               Privacy
