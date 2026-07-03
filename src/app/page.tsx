@@ -1,65 +1,177 @@
+import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { InstagramIcon } from "@/components/icons/InstagramIcon";
+import { products } from "@/lib/data";
+import { formatPrice } from "@/lib/utils";
 
 export default function Home() {
+  const featured = products.filter((p) => p.featured).slice(0, 3);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="flex flex-col">
+      {/* Hero */}
+      <section className="relative flex min-h-[85vh] items-center">
+        <div className="absolute inset-0">
+          <Image
+            src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?auto=format&fit=crop&w=1920&q=80"
+            alt="Handcrafted woodwork in a sunlit workshop"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 to-background/20" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+        <div className="relative mx-auto w-full max-w-7xl px-6 py-32">
+          <div className="max-w-2xl">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+              Virtual Showroom
+            </p>
+            <h1 className="font-serif text-5xl font-semibold leading-[1.1] text-foreground md:text-7xl lg:text-8xl">
+              Handcrafted
+              <br />
+              items, made
+              <br />
+              to endure.
+            </h1>
+            <p className="mt-8 max-w-md text-lg leading-relaxed text-foreground/70">
+              A curated collection of wooden goods by Deangelo Dyer. Explore the
+              portfolio, request a piece, or start a custom conversation.
+            </p>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Link
+                href="/shop"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-md bg-walnut px-8 font-medium text-cream transition-colors hover:bg-foreground"
+              >
+                Shop Collection
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/portfolio"
+                className="inline-flex h-14 items-center justify-center rounded-md border border-foreground/20 bg-background/80 px-8 font-medium text-foreground backdrop-blur-sm transition-colors hover:bg-cream"
+              >
+                View Portfolio
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured */}
+      <section className="mx-auto w-full max-w-7xl px-6 py-24">
+        <div className="mb-12 flex items-end justify-between">
+          <div>
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+              Featured
+            </p>
+            <h2 className="font-serif text-4xl font-semibold md:text-5xl">
+              In the showroom
+            </h2>
+          </div>
+          <Link
+            href="/shop"
+            className="hidden items-center gap-2 text-sm font-medium underline underline-offset-4 hover:text-accent sm:inline-flex"
           >
+            Shop all items <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {featured.map((product) => (
+            <Link
+              key={product.id}
+              href={`/shop/${product.slug}`}
+              className="group"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+              <div className="mt-5 flex items-start justify-between">
+                <div>
+                  <h3 className="font-serif text-xl font-medium">
+                    {product.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-foreground/60">
+                    {product.category}
+                  </p>
+                </div>
+                <span className="font-medium text-accent">
+                  {formatPrice(product.price)}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-10 sm:hidden">
+          <Link
+            href="/shop"
+            className="inline-flex items-center gap-2 text-sm font-medium underline underline-offset-4 hover:text-accent"
+          >
+            Shop all items <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+
+      {/* About teaser */}
+      <section className="bg-cream">
+        <div className="mx-auto grid max-w-7xl gap-0 md:grid-cols-2">
+          <div className="relative aspect-[4/3] md:aspect-auto">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="https://images.unsplash.com/photo-1611269154421-4e27233ac5c7?auto=format&fit=crop&w=1200&q=80"
+              alt="Woodworker at the bench"
+              fill
+              className="object-cover"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
+          <div className="flex flex-col justify-center px-6 py-16 md:p-16 lg:p-24">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
+              About the Maker
+            </p>
+            <h2 className="font-serif text-4xl font-semibold md:text-5xl">
+              Patience, grain, and intention.
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-foreground/70">
+              Every piece starts with a conversation — with the wood, with the
+              space it will live in, and with the hands that will use it.
+              Deangelo Dyer builds handcrafted items that honor the material and
+              the moment.
+            </p>
+            <Link
+              href="/about"
+              className="mt-8 inline-flex w-fit items-center gap-2 text-sm font-semibold uppercase tracking-widest hover:text-accent"
+            >
+              Read the story <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Instagram CTA */}
+      <section className="mx-auto w-full max-w-7xl px-6 py-24 text-center">
+        <InstagramIcon className="mx-auto h-8 w-8 text-accent" />
+        <h2 className="mt-4 font-serif text-3xl font-semibold md:text-4xl">
+          Follow the work in progress
+        </h2>
+        <p className="mx-auto mt-4 max-w-md text-foreground/70">
+          Behind-the-scenes shots, works in progress, and finished pieces on
+          Instagram.
+        </p>
+        <a
+          href="https://instagram.com/deangelodyerdesigns"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-md border border-foreground/20 px-6 font-medium transition-colors hover:bg-cream"
+        >
+          @deangelodyerdesigns
+        </a>
+      </section>
     </div>
   );
 }
