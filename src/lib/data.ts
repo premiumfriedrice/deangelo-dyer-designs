@@ -109,6 +109,14 @@ export const portfolioItems: PortfolioItem[] = [
       "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80",
     description: "A single-slab walnut console with hairpin legs.",
     year: "2024",
+    materials: ["Black walnut", "Blackened steel", "Rubio Monocoat"],
+    story:
+      "Sourced from a fallen urban walnut tree. The live edge was preserved to keep the tree’s original silhouette intact.",
+    details: [
+      { label: "Dimensions", value: '60" x 14" x 30"' },
+      { label: "Year", value: "2024" },
+      { label: "Commission", value: "Private residence" },
+    ],
   },
   {
     id: "g2",
@@ -118,6 +126,14 @@ export const portfolioItems: PortfolioItem[] = [
       "https://images.unsplash.com/photo-1578500494198-246f612d3b3d?auto=format&fit=crop&w=800&q=80",
     description: "Hand-turned bowl with a burnished rim.",
     year: "2024",
+    materials: ["Black walnut", "Beeswax finish"],
+    story:
+      "Turned from a single offcut too small for furniture. The rim was lightly charred before finishing to deepen the grain contrast.",
+    details: [
+      { label: "Dimensions", value: '11" x 11" x 4"' },
+      { label: "Year", value: "2024" },
+      { label: "Edition", value: "One of a kind" },
+    ],
   },
   {
     id: "g3",
@@ -127,6 +143,14 @@ export const portfolioItems: PortfolioItem[] = [
       "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=800&q=80",
     description: "Spalted maple shades with brass hardware.",
     year: "2023",
+    materials: ["Spalted maple", "Brass", "Linen cord"],
+    story:
+      "Created for a reading nook. The spalted grain patterns are unique to each shade, so no two lights are alike.",
+    details: [
+      { label: "Dimensions", value: '8" dia. x 7" h' },
+      { label: "Year", value: "2023" },
+      { label: "Quantity", value: "Pair" },
+    ],
   },
   {
     id: "g4",
@@ -136,6 +160,14 @@ export const portfolioItems: PortfolioItem[] = [
       "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?auto=format&fit=crop&w=800&q=80",
     description: "White oak coffee table with a bookmatched top.",
     year: "2023",
+    materials: ["White oak", "Osmo Polyx", "Tapered legs"],
+    story:
+      "The top is bookmatched from sequential boards so the grain flows continuously across the width.",
+    details: [
+      { label: "Dimensions", value: '48" x 24" x 16"' },
+      { label: "Year", value: "2023" },
+      { label: "Finish", value: "Matte oil" },
+    ],
   },
   {
     id: "g5",
@@ -145,6 +177,14 @@ export const portfolioItems: PortfolioItem[] = [
       "https://images.unsplash.com/photo-1591123720164-de1348028a82?auto=format&fit=crop&w=800&q=80",
     description: "Cherry and brass desk caddy.",
     year: "2024",
+    materials: ["Cherry", "Brass pins", "Shellac"],
+    story:
+      "A compact piece designed to hold pens, letters, and small tools without taking over the desk.",
+    details: [
+      { label: "Dimensions", value: '10" x 5" x 4"' },
+      { label: "Year", value: "2024" },
+      { label: "Use", value: "Desk storage" },
+    ],
   },
   {
     id: "g6",
@@ -154,6 +194,14 @@ export const portfolioItems: PortfolioItem[] = [
       "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=800&q=80",
     description: "A sculptural rocking chair in ash and leather.",
     year: "2022",
+    materials: ["Ash", "Vegetable-tanned leather", "Osmo oil"],
+    story:
+      "The runner profile was shaped by hand over several days to achieve a smooth, balanced rock.",
+    details: [
+      { label: "Dimensions", value: '22" x 32" x 38"' },
+      { label: "Year", value: "2022" },
+      { label: "Seat", value: "Leather sling" },
+    ],
   },
 ];
 

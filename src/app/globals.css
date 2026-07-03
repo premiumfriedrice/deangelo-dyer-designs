@@ -11,6 +11,10 @@
   --cream: #faf8f5;
   --border: #e7e0d7;
   --shadow: 0 24px 60px rgba(31, 27, 24, 0.08);
+  --plaque-bg: #2a2a2a;
+  --plaque-text: #d4d0c8;
+  --plaque-border: #4a4a4a;
+  --plaque-highlight: #6b6b6b;
 }
 
 @theme inline {
@@ -23,6 +27,10 @@
   --color-walnut: var(--walnut);
   --color-cream: var(--cream);
   --color-border: var(--border);
+  --color-plaque-bg: var(--plaque-bg);
+  --color-plaque-text: var(--plaque-text);
+  --color-plaque-border: var(--plaque-border);
+  --color-plaque-highlight: var(--plaque-highlight);
   --font-serif: var(--font-cormorant);
   --font-sans: var(--font-dm-sans);
 }
@@ -49,4 +57,19 @@ body {
   z-index: 50;
   opacity: 0.04;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.plaque-engrave {
+  color: var(--plaque-text);
+  text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.6);
+}
+
+.plaque-brushed {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    transparent 40%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.25) 100%
+  ), var(--plaque-bg);
 }

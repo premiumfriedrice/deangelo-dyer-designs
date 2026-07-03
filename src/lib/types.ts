@@ -13,6 +13,11 @@ export interface Product {
   featured?: boolean;
 }
 
+export interface PortfolioDetail {
+  label: string;
+  value: string;
+}
+
 export interface PortfolioItem {
   id: string;
   title: string;
@@ -20,6 +25,9 @@ export interface PortfolioItem {
   image: string;
   description: string;
   year: string;
+  materials: string[];
+  story?: string;
+  details: PortfolioDetail[];
 }
 
 export interface CartItem {
