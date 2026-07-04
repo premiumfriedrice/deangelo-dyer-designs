@@ -43,7 +43,7 @@ export default function AboutPage() {
               About the Maker
             </p>
             <h1 className="font-serif text-5xl font-semibold md:text-6xl">
-              [Business Name]
+              Deangelo Dyer Designs
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-foreground/70">
               [Name] is a woodworker based in [City], [State]. What began as

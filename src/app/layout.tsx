@@ -20,7 +20,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "[Business Name] | Virtual Showroom",
+  title: "Deangelo Dyer Designs | Virtual Showroom",
   description:
     "A virtual showroom for handcrafted items. Explore the portfolio, shop the collection, and inquire about custom work.",
 };

@@ -38,7 +38,7 @@ export default function Home() {
               to endure.
             </h1>
             <p className="mt-8 max-w-md text-lg leading-relaxed text-foreground/70">
-              A curated collection of wooden goods by [Business Name]. Explore the
+              A curated collection of wooden goods by Deangelo Dyer Designs. Explore the
               portfolio, request a piece, or start a custom conversation.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -142,7 +142,7 @@ export default function Home() {
             <p className="mt-6 text-lg leading-relaxed text-foreground/70">
               Every piece starts with a conversation — with the wood, with the
               space it will live in, and with the hands that will use it.
-              [Business Name] builds handcrafted items that honor the material and
+              Deangelo Dyer Designs builds handcrafted items that honor the material and
               the moment.
             </p>
             <Link

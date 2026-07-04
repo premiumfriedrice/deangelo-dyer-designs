@@ -24,7 +24,7 @@ export function Header() {
         <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
           <Link href="/" className="flex items-center gap-3">
             <span className="font-serif text-2xl font-semibold tracking-tight">
-              [Business Name]
+              Deangelo Dyer Designs
             </span>
             <span className="hidden text-xs font-medium uppercase tracking-widest text-muted sm:inline">
               Designs
