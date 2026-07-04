@@ -4,21 +4,21 @@ import { use } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, Check, ShoppingBag } from "lucide-react";
-import { products } from "@/lib/data";
+import { portfolioItems } from "@/lib/data";
 import { useCart } from "@/context/CartContext";
 import { formatPrice } from "@/lib/utils";
 import { notFound } from "next/navigation";
 
-export default function ProductPage({
+export default function ShopDetailPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = use(params);
-  const product = products.find((p) => p.slug === slug);
+  const item = portfolioItems.find((p) => p.slug === slug && p.forSale);
   const { addItem } = useCart();
 
-  if (!product) {
+  if (!item) {
     notFound();
   }
 
@@ -34,8 +34,8 @@ export default function ProductPage({
       <div className="grid gap-12 lg:grid-cols-2">
         <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream lg:aspect-square">
           <Image
-            src={product.image}
-            alt={product.name}
+            src={item.image}
+            alt={item.title}
             fill
             className="object-cover"
             priority
@@ -44,47 +44,51 @@ export default function ProductPage({
 
         <div className="flex flex-col justify-center">
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-            {product.category}
+            {item.category}
           </p>
           <h1 className="mt-3 font-serif text-4xl font-semibold md:text-5xl">
-            {product.name}
+            {item.title}
           </h1>
           <p className="mt-6 font-serif text-3xl font-semibold text-foreground">
-            {formatPrice(product.price)}
+            {item.price ? formatPrice(item.price) : "Inquire"}
           </p>
           <p className="mt-6 text-lg leading-relaxed text-foreground/70">
-            {product.description}
+            {item.description}
           </p>
 
           <div className="mt-8 grid gap-6 sm:grid-cols-2">
-            {product.materials && (
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-widest text-muted">
-                  Materials
-                </h3>
-                <ul className="mt-2 space-y-1 text-foreground/80">
-                  {product.materials.map((material) => (
-                    <li key={material} className="flex items-center gap-2">
-                      <Check className="h-3.5 w-3.5 text-accent" />
-                      {material}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {product.dimensions && (
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-widest text-muted">
-                  Dimensions
-                </h3>
-                <p className="mt-2 text-foreground/80">{product.dimensions}</p>
-              </div>
-            )}
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-muted">
+                Materials
+              </h3>
+              <ul className="mt-2 space-y-1 text-foreground/80">
+                {item.materials.map((material) => (
+                  <li key={material} className="flex items-center gap-2">
+                    <Check className="h-3.5 w-3.5 text-accent" />
+                    {material}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-widest text-muted">
+                Details
+              </h3>
+              <dl className="mt-2 space-y-1 text-foreground/80">
+                {item.details.map((detail) => (
+                  <div key={detail.label} className="flex justify-between">
+                    <dt className="text-foreground/60">{detail.label}</dt>
+                    <dd className="font-medium">{detail.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </div>
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <button
-              onClick={() => addItem(product)}
+              onClick={() => addItem(item)}
               className="inline-flex h-14 items-center justify-center gap-2 rounded-md bg-walnut px-8 font-medium text-cream transition-colors hover:bg-foreground"
             >
               <ShoppingBag className="h-5 w-5" />
