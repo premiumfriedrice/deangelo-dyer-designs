@@ -75,3 +75,13 @@ Verify:
 - Reusable components: `PortfolioPlaque`, `PortfolioSpotlight`, `PortfolioFloorPlan`.
 - Detail pages include prev/next navigation and SEO metadata.
 - Implementation plan saved to `docs/plans/2026-07-02-virtual-showroom-detail-pages.md`.
+
+## Update: Portfolio Purchase Option
+
+- Added `forSale`, `price`, `featured`, and `slug` fields to `PortfolioItem`.
+- Shop is now a filtered view of portfolio items where `forSale: true`.
+- Removed standalone `Product` type and `products` array.
+- Added "Add to inquiry cart" CTA on `/portfolio/[id]` for for-sale pieces.
+- Added new portfolio examples: cutting boards, butcher block, utensil vase, shelves, bathroom counter.
+- Four shelves are for sale: Black Walnut Shelf, Carved Live Edge Walnut Shelf, Live Edge Floating Walnut Shelf, Mesquite Torch Shelf.
+- Implementation plan saved to `docs/plans/2026-07-03-portfolio-purchase-option.md`.
