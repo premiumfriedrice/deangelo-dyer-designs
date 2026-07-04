@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PortfolioItem } from "@/lib/types";
+import { formatPrice } from "@/lib/utils";
 
 interface PortfolioFloorPlanProps {
   items: PortfolioItem[];
@@ -41,6 +42,11 @@ export function PortfolioFloorPlan({
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
               />
+              {item.forSale && item.price && (
+                <span className="absolute right-2 top-2 rounded-full bg-walnut px-2 py-1 text-[10px] font-medium text-cream shadow-sm">
+                  {formatPrice(item.price)}
+                </span>
+              )}
             </div>
             <div className="border-t border-border bg-cream p-2.5">
               <p className="truncate text-[10px] font-semibold uppercase tracking-widest text-foreground/60">

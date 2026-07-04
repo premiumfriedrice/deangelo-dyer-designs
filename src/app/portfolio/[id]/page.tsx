@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { portfolioItems } from "@/lib/data";
 import { PortfolioPlaque } from "@/components/portfolio/PortfolioPlaque";
-import { PurchaseButton } from "@/components/portfolio/PurchaseButton";
+import { ViewInShop } from "@/components/portfolio/ViewInShop";
 import type { Metadata } from "next";
 
 export async function generateMetadata({
@@ -61,7 +61,7 @@ export default async function PortfolioDetailPage({
           <div className="flex flex-col justify-center bg-background p-8 md:p-10 lg:p-12">
             <PortfolioPlaque item={item} />
 
-            <PurchaseButton item={item} />
+            <ViewInShop item={item} />
 
             {item.description && (
               <p className="mt-8 text-lg leading-relaxed text-foreground/70">

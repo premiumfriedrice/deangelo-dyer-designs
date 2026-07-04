@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ShoppingBag } from "lucide-react";
 import { PortfolioItem } from "@/lib/types";
+import { formatPrice } from "@/lib/utils";
 import { PortfolioPlaque } from "./PortfolioPlaque";
 
 interface PortfolioSpotlightProps {
@@ -32,12 +33,24 @@ export function PortfolioSpotlight({ item }: PortfolioSpotlightProps) {
         <div className="flex flex-col justify-center bg-background p-8 md:p-10 lg:p-12">
           <PortfolioPlaque item={item} />
 
-          <Link
-            href={`/portfolio/${item.id}`}
-            className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent hover:text-accent-hover"
-          >
-            View full exhibit <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="mt-6 flex flex-col gap-3">
+            <Link
+              href={`/portfolio/${item.id}`}
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-accent hover:text-accent-hover"
+            >
+              View full exhibit <ArrowRight className="h-4 w-4" />
+            </Link>
+
+            {item.forSale && item.price && (
+              <Link
+                href={`/shop/${item.slug}`}
+                className="inline-flex items-center gap-2 rounded-md bg-walnut px-5 py-3 text-sm font-medium text-cream transition-colors hover:bg-foreground"
+              >
+                <ShoppingBag className="h-4 w-4" />
+                Available for purchase — {formatPrice(item.price)}
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </div>
