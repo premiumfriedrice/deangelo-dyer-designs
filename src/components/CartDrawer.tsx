@@ -63,7 +63,7 @@ export function CartDrawer() {
                     <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-md bg-cream">
                       <Image
                         src={item.product.image}
-                        alt={item.product.name}
+                        alt={item.product.title}
                         fill
                         className="object-cover"
                       />
@@ -71,10 +71,10 @@ export function CartDrawer() {
                     <div className="flex flex-1 flex-col justify-between">
                       <div>
                         <h3 className="font-serif text-lg font-medium">
-                          {item.product.name}
+                          {item.product.title}
                         </h3>
                         <p className="text-sm text-foreground/60">
-                          {formatPrice(item.product.price)}
+                          {item.product.price ? formatPrice(item.product.price) : "Inquire"}
                         </p>
                       </div>
                       <div className="flex items-center justify-between">
