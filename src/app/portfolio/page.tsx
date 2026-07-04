@@ -1,17 +1,32 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { portfolioItems } from "@/lib/data";
-import { categories } from "@/lib/data";
+import { useState, useMemo } from "react";
+import { portfolioItems, categories } from "@/lib/data";
+import { PortfolioSpotlight } from "@/components/portfolio/PortfolioSpotlight";
+import { PortfolioFloorPlan } from "@/components/portfolio/PortfolioFloorPlan";
 
 export default function PortfolioPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const filtered =
-    activeCategory === "All"
-      ? portfolioItems
-      : portfolioItems.filter((item) => item.category === activeCategory);
+  const filtered = useMemo(
+    () =>
+      activeCategory === "All"
+        ? portfolioItems
+        : portfolioItems.filter((item) => item.category === activeCategory),
+    [activeCategory]
+  );
+
+  const [selected, setSelected] = useState(() => filtered[0] ?? null);
+
+  // Reset selected item when filter changes so the spotlight stays in the current room.
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    const nextFiltered =
+      category === "All"
+        ? portfolioItems
+        : portfolioItems.filter((item) => item.category === category);
+    setSelected(nextFiltered[0] ?? null);
+  };
 
   const allCategories = ["All", ...categories];
 
@@ -19,22 +34,22 @@ export default function PortfolioPage() {
     <div className="mx-auto w-full max-w-7xl px-6 py-16">
       <div className="mb-12 max-w-2xl">
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-accent">
-          Portfolio
+          Virtual Showroom
         </p>
         <h1 className="font-serif text-5xl font-semibold md:text-6xl">
           Selected work
         </h1>
         <p className="mt-5 text-lg text-foreground/70">
-          A gallery of finished pieces — from small goods to larger furniture.
-          Each project is an exploration of material, form, and use.
+          Browse the gallery map below. Select a piece to bring it onto the
+          spotlight stage, or open its full exhibit page.
         </p>
       </div>
 
-      <div className="mb-10 flex flex-wrap gap-3">
+      <div className="mb-8 flex flex-wrap gap-3">
         {allCategories.map((category) => (
           <button
             key={category}
-            onClick={() => setActiveCategory(category)}
+            onClick={() => handleCategoryChange(category)}
             className={`rounded-full px-5 py-2 text-sm font-medium transition-colors ${
               activeCategory === category
                 ? "bg-walnut text-cream"
@@ -46,36 +61,26 @@ export default function PortfolioPage() {
         ))}
       </div>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((item) => (
-          <div
-            key={item.id}
-            className="group relative overflow-hidden rounded-md bg-card"
-          >
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <Image
-                src={item.image}
-                alt={item.title}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            </div>
-            <div className="absolute bottom-0 left-0 right-0 translate-y-4 p-6 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-              <p className="text-xs font-semibold uppercase tracking-widest text-accent">
-                {item.category}
-              </p>
-              <h3 className="mt-1 font-serif text-2xl font-medium text-cream">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm text-cream/80">
-                {item.description}
-              </p>
-              <p className="mt-3 text-xs text-cream/60">{item.year}</p>
-            </div>
-          </div>
-        ))}
+      {selected && (
+        <div className="mb-12 transition-opacity duration-500 ease-out">
+          <PortfolioSpotlight item={selected} />
+        </div>
+      )}
+
+      <div className="mb-6 flex items-center justify-between">
+        <h2 className="text-sm font-semibold uppercase tracking-widest text-muted">
+          Gallery map
+        </h2>
+        <p className="text-sm text-foreground/50">
+          {filtered.length} piece{filtered.length === 1 ? "" : "s"} in this room
+        </p>
       </div>
+
+      <PortfolioFloorPlan
+        items={filtered}
+        activeId={selected?.id ?? ""}
+        onSelect={setSelected}
+      />
     </div>
   );
 }

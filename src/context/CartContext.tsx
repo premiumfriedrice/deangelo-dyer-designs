@@ -7,11 +7,11 @@ import {
   useCallback,
   ReactNode,
 } from "react";
-import { Product, CartItem } from "@/lib/types";
+import { PortfolioItem, CartItem } from "@/lib/types";
 
 interface CartContextValue {
   items: CartItem[];
-  addItem: (product: Product, quantity?: number) => void;
+  addItem: (product: PortfolioItem, quantity?: number) => void;
   removeItem: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
@@ -28,7 +28,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isOpen, setIsOpen] = useState(false);
 
-  const addItem = useCallback((product: Product, quantity = 1) => {
+  const addItem = useCallback((product: PortfolioItem, quantity = 1) => {
     setItems((current) => {
       const existing = current.find((item) => item.product.id === product.id);
       if (existing) {
@@ -69,7 +69,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const subtotal = items.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
+    (sum, item) =>
+      sum + (item.product.price ?? 0) * item.quantity,
     0
   );
 

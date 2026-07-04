@@ -81,7 +81,7 @@ export default function CartPage() {
                 <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-md bg-cream">
                   <Image
                     src={item.product.image}
-                    alt={item.product.name}
+                    alt={item.product.title}
                     fill
                     className="object-cover"
                   />
@@ -92,10 +92,10 @@ export default function CartPage() {
                       href={`/shop/${item.product.slug}`}
                       className="font-serif text-xl font-medium hover:text-accent"
                     >
-                      {item.product.name}
+                      {item.product.title}
                     </Link>
                     <p className="mt-1 text-sm text-foreground/60">
-                      {formatPrice(item.product.price)} each
+                      {item.product.price ? formatPrice(item.product.price) : "Inquire"} each
                     </p>
                   </div>
                   <div className="flex items-center justify-between">

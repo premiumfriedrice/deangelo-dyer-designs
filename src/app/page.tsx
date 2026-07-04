@@ -2,11 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
-import { products } from "@/lib/data";
+import { portfolioItems } from "@/lib/data";
 import { formatPrice } from "@/lib/utils";
 
 export default function Home() {
-  const featured = products.filter((p) => p.featured).slice(0, 3);
+  const featured = portfolioItems
+    .filter((item) => item.forSale && item.featured)
+    .slice(0, 3);
 
   return (
     <div className="flex flex-col">
@@ -36,7 +38,7 @@ export default function Home() {
               to endure.
             </h1>
             <p className="mt-8 max-w-md text-lg leading-relaxed text-foreground/70">
-              A curated collection of wooden goods by [Business Name]. Explore the
+              A curated collection of wooden goods by Deangelo Dyer Designs. Explore the
               portfolio, request a piece, or start a custom conversation.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
@@ -78,16 +80,16 @@ export default function Home() {
         </div>
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {featured.map((product) => (
+          {featured.map((item) => (
             <Link
-              key={product.id}
-              href={`/shop/${product.slug}`}
+              key={item.id}
+              href={`/shop/${item.slug}`}
               className="group"
             >
               <div className="relative aspect-[4/5] overflow-hidden rounded-md bg-cream">
                 <Image
-                  src={product.image}
-                  alt={product.name}
+                  src={item.image}
+                  alt={item.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
@@ -95,14 +97,14 @@ export default function Home() {
               <div className="mt-5 flex items-start justify-between">
                 <div>
                   <h3 className="font-serif text-xl font-medium">
-                    {product.name}
+                    {item.title}
                   </h3>
                   <p className="mt-1 text-sm text-foreground/60">
-                    {product.category}
+                    {item.category}
                   </p>
                 </div>
                 <span className="font-medium text-accent">
-                  {formatPrice(product.price)}
+                  {item.price ? formatPrice(item.price) : "Inquire"}
                 </span>
               </div>
             </Link>
@@ -140,7 +142,7 @@ export default function Home() {
             <p className="mt-6 text-lg leading-relaxed text-foreground/70">
               Every piece starts with a conversation — with the wood, with the
               space it will live in, and with the hands that will use it.
-              [Business Name] builds handcrafted items that honor the material and
+              Deangelo Dyer Designs builds handcrafted items that honor the material and
               the moment.
             </p>
             <Link
